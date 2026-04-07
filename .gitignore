@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Personal ride data
+*.fit
+!prc26-145km-sectors.fit
+
+# Local-only utilities and cached data
+fetch_coords.py
+segment_cache.json
+
+# macOS
+.DS_Store
+
+# Draft content
+.nocommit/
+
+# Claude Code internals
+.claude/

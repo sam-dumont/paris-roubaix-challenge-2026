@@ -447,11 +447,7 @@ def main():
         roadbook_html += f'<span style="color:#888;font-size:11px;font-weight:bold;margin-right:6px;">{t["time"]}</span>'
         roadbook_html += f'<span style="color:#aaa;font-size:10px;margin-right:6px;">{t["km"]:.0f}km</span>'
         roadbook_html += f'<span style="color:{ev_color};font-weight:bold;">{ev}</span>'
-        # Difficulty bar for sectors (official PRC style)
-        if is_sector:
-            bar_bg, _ = DIFF_COLORS.get(star_count, ("#ccc", "#000"))
-            bars = "".join(f'<span style="display:inline-block;width:8px;height:12px;background:{bar_bg};margin-right:1px;border-radius:1px;"></span>' for _ in range(star_count))
-            roadbook_html += f' <span style="margin-left:4px;">{bars}</span>'
+        # Stars are already in the event name — no extra difficulty bar needed
         # Line 2: note (with power highlighted)
         if t["note"]:
             note = t["note"]

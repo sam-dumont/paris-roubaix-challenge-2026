@@ -56,7 +56,9 @@ FOOD_STATIONS = [
 ]
 
 # Gels before 5-star sectors
-GEL_SECTORS = {19: "GEL pre-ARNBG", 11: "GEL pre-MONS", 4: "GEL pre-ARBRE"}
+# Gel reminders BEFORE the 5-star sector block, not right at entry.
+# Sector 4 gel moved to before Camphin (S5) so it doesn't overlap Carrefour.
+GEL_SECTORS = {19: "GEL pre-ARNBG", 11: "GEL pre-MONS", 5: "GEL pre-FINALE"}
 
 # Star rating → cobble surface type.
 # Downgraded one level vs road tires: 40mm gravel tires absorb more vibration,
@@ -113,7 +115,7 @@ def build_pacing_zones():
     # high-Crr sectors (each extra watt saves ~1.5x more time on cobbles).
     return [
         (0, 51, 0.88),       # pre-cobbles: conserve legs
-        (131, 147, 1.05),    # finale to Roubaix: push if legs allow
+        (125, 147, 1.05),    # finale from Camphin to Roubaix: push
     ]
 
 
@@ -131,9 +133,9 @@ def build_waypoints():
     # Sector entry/exit + gel reminders
     for sec in SECTORS:
         from_km, to_km = sec["km"]
-        # Gel reminder 0.5km before 5-star sectors
+        # Gel reminder 4km before sectors (outside the 2km feed zone window)
         if sec["sector"] in GEL_SECTORS:
-            wps.append(CourseWaypoint(km=from_km - 0.5, type="gel", name=GEL_SECTORS[sec["sector"]]))
+            wps.append(CourseWaypoint(km=from_km - 4.0, type="gel", name=GEL_SECTORS[sec["sector"]]))
         # Sector entry
         name = f"{sec['sector']}-{'*'*sec['stars']}-{sec['short']}"
         wps.append(CourseWaypoint(km=from_km, type="danger", name=name[:32]))
@@ -344,7 +346,8 @@ def main():
         rider=rider,
         conditions=conditions,
         waypoints=waypoints,
-        correct_elevation=False,  # GPX has DEM-corrected elevation
+        correct_elevation=True,   # Use Copernicus DEM for accurate grades
+        min_power_pct=0.50,       # don't drop below 50% FTP on any sector
     )
     print(f"  ✓ {len(result.splits)} splits computed")
     print(f"  Total: {result.total_time_s/3600:.1f}h, {result.total_distance_m/1000:.1f}km, "

@@ -52,7 +52,9 @@ SECTOR_NOTES = {
     1: "300m into the Vélodrome. Soak it in.",
 }
 
-STAR_COLORS = {1: "#888", 2: "#888", 3: "#e6a800", 4: "#e65c00", 5: "#cc0000"}
+# Official PRC sector colors by difficulty (from the official table)
+# 1★=yellow, 2★=light blue, 3★=orange, 4★=red, 5★=black
+STAR_COLORS = {1: "#e6c619", 2: "#5bb8d4", 3: "#e67e22", 4: "#cc2200", 5: "#000000"}
 GPX_FILE = "prc26-145kmvf.gpx"
 PLAN_FILE = "race_plan.json"
 MATCH_THRESHOLD_M = 100
@@ -385,48 +387,94 @@ def main():
         popup=f"<b>START / FINISH</b><br>Roubaix<br>Depart: {plan['start_time']}<br>Est. finish: {plan['finish_time']} ({plan['total_hours']}h)",
     ).add_to(m)
 
-    # Road book panel — compact two-row layout per event
+    # Road book panel — official PRC colors per difficulty
+    # Official colors from the PRC sector table:
+    #   1★: yellow  2★: light blue  3★: orange  4★: red  5★: black
+    # Official PRC difficulty colors
+    DIFF_COLORS = {
+        1: ("#e6c619", "#000"),  # yellow
+        2: ("#5bb8d4", "#fff"),  # light blue
+        3: ("#e67e22", "#fff"),  # orange
+        4: ("#cc2200", "#fff"),  # red
+        5: ("#000000", "#fff"),  # black
+    }
+
     roadbook_html = '<div style="font-family:-apple-system,Arial,sans-serif;font-size:12px;">'
     roadbook_html += f'<div style="background:#cc0000;color:white;padding:8px 12px;font-weight:bold;font-size:14px;">ROAD BOOK</div>'
     wind = plan.get("wind", {})
     wind_str = wind.get("summary", "") if wind else ""
     ele_str = plan.get("elevation", "")
+    avg_pw = plan.get("avg_power_w", 0)
+    avg_spd = plan.get("avg_speed_kmh", 0)
+    if_val = plan.get("intensity_factor", 0)
     roadbook_html += f'<div style="padding:6px 12px;background:#f0f0f0;font-size:11px;line-height:1.6;">'
     roadbook_html += f'<b>{plan["start_time"]} → {plan["finish_time"]} ({plan["total_hours"]}h)</b><br>'
+    roadbook_html += f'⚡ <b>{avg_pw}W</b> avg (IF {if_val}) · {avg_spd} km/h<br>'
     roadbook_html += f'{plan["nutrition"]["carbs_per_hour"]}g carbs/h · {plan["nutrition"]["fluid_liters"]}L fluid · {ele_str}<br>'
     if wind_str:
         roadbook_html += f'🌬 {wind_str}'
     roadbook_html += '</div>'
 
     for i, t in enumerate(plan["timeline"]):
-        bg = "#fff" if i % 2 == 0 else "#f7f7f7"
         ev = t["event"]
-        # Determine event color
-        if "RAVITO" in ev:
+        # Detect star count from event name for official coloring
+        star_count = ev.count("★")
+        is_sector = star_count > 0
+        is_food = "RAVITO" in ev
+        is_start_finish = "START" in ev or "FINISH" in ev
+
+        if is_sector:
+            bg_color, text_color = DIFF_COLORS.get(star_count, ("#fff", "#333"))
+            # Use colored left border + light tinted background
+            left_border = f"border-left:5px solid {bg_color};"
+            bg = f"background:{'#fff8f0' if star_count <= 2 else '#fff0f0' if star_count <= 3 else '#ffe8e8' if star_count <= 4 else '#ffd0d0'};"
+            ev_color = bg_color
+        elif is_food:
+            left_border = "border-left:5px solid #2ecc40;"
+            bg = "background:#f0fff0;"
             ev_color = "#2ecc40"
-        elif "START" in ev or "FINISH" in ev:
+        elif is_start_finish:
+            left_border = "border-left:5px solid #cc0000;"
+            bg = "background:#fff0f0;"
             ev_color = "#cc0000"
-        elif "*****" in ev:
-            ev_color = "#cc0000"
-        elif "****" in ev:
-            ev_color = "#e65c00"
-        elif "***" in ev:
-            ev_color = "#e6a800"
         else:
+            left_border = ""
+            bg = f"background:{'#fff' if i % 2 == 0 else '#f7f7f7'};"
             ev_color = "#333"
 
-        roadbook_html += f'<div style="background:{bg};padding:5px 10px;border-bottom:1px solid #eee;">'
+        roadbook_html += f'<div style="{bg}{left_border}padding:5px 10px;border-bottom:1px solid #eee;">'
         # Line 1: time + km + event name
         roadbook_html += f'<span style="color:#888;font-size:11px;font-weight:bold;margin-right:6px;">{t["time"]}</span>'
         roadbook_html += f'<span style="color:#aaa;font-size:10px;margin-right:6px;">{t["km"]:.0f}km</span>'
         roadbook_html += f'<span style="color:{ev_color};font-weight:bold;">{ev}</span>'
-        # Line 2: note
+        # Difficulty bar for sectors (official PRC style)
+        if is_sector:
+            bar_bg, _ = DIFF_COLORS.get(star_count, ("#ccc", "#000"))
+            bars = "".join(f'<span style="display:inline-block;width:8px;height:12px;background:{bar_bg};margin-right:1px;border-radius:1px;"></span>' for _ in range(star_count))
+            roadbook_html += f' <span style="margin-left:4px;">{bars}</span>'
+        # Line 2: note (with power highlighted)
         if t["note"]:
-            roadbook_html += f'<br><span style="font-size:10px;color:#666;">{t["note"]}</span>'
-        # Line 3: nutrition (own line)
+            note = t["note"]
+            # Highlight the power value
+            if "⚡" in note:
+                note = note.replace("⚡", '<span style="color:#e63900;font-weight:bold;">⚡</span>')
+            roadbook_html += f'<br><span style="font-size:10px;color:#666;">{note}</span>'
+        # Line 3: nutrition
         if t.get("nutrition"):
             roadbook_html += f'<br><span style="font-size:10px;color:#e65c00;">🥤 {t["nutrition"]}</span>'
         roadbook_html += '</div>'
+
+    # Collapsible generation info
+    roadbook_html += '<details style="padding:8px 12px;background:#f0f0f0;font-size:10px;color:#888;">'
+    roadbook_html += '<summary style="cursor:pointer;font-weight:bold;">How this was generated</summary>'
+    roadbook_html += '<div style="margin-top:6px;line-height:1.5;">'
+    roadbook_html += 'Physics model: <b>bike-power-model</b> plan_ride()<br>'
+    roadbook_html += 'FTP=287W · CdA=0.53 · Crr=0.007 · Mass=114kg<br>'
+    roadbook_html += 'Surface-aware optimizer (cobble Crr penalties)<br>'
+    roadbook_html += f'Weather: Open-Meteo forecast (SSW {wind.get("speed_kmh_morning",20)}→{wind.get("speed_kmh_afternoon",22)}km/h)<br>'
+    roadbook_html += 'Fatigue model: endurance (onset 1.5h)<br>'
+    roadbook_html += f'Model validated on 112 rides (7.9% MAE)<br>'
+    roadbook_html += '</div></details>'
 
     roadbook_html += '</div>'
 
@@ -599,15 +647,17 @@ def main():
     svg += f'<rect x="{margin_l + 70}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="rgba(39,174,96,0.3)" />'
     svg += f'<text x="{margin_l + 83}" y="{margin_t + plot_h + 26}" font-size="8" fill="#888">tailwind</text>'
 
-    # Sector legend
-    svg += f'<rect x="{margin_l + 145}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#cc0000" />'
+    # Sector legend (official PRC colors)
+    svg += f'<rect x="{margin_l + 145}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#000000" />'
     svg += f'<text x="{margin_l + 158}" y="{margin_t + plot_h + 26}" font-size="8" fill="#888">5★</text>'
-    svg += f'<rect x="{margin_l + 175}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#e65c00" />'
+    svg += f'<rect x="{margin_l + 175}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#cc2200" />'
     svg += f'<text x="{margin_l + 188}" y="{margin_t + plot_h + 26}" font-size="8" fill="#888">4★</text>'
-    svg += f'<rect x="{margin_l + 205}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#e6a800" />'
+    svg += f'<rect x="{margin_l + 205}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#e67e22" />'
     svg += f'<text x="{margin_l + 218}" y="{margin_t + plot_h + 26}" font-size="8" fill="#888">3★</text>'
-    svg += f'<rect x="{margin_l + 240}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#888" />'
-    svg += f'<text x="{margin_l + 253}" y="{margin_t + plot_h + 26}" font-size="8" fill="#888">1-2★</text>'
+    svg += f'<rect x="{margin_l + 235}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#5bb8d4" />'
+    svg += f'<text x="{margin_l + 248}" y="{margin_t + plot_h + 26}" font-size="8" fill="#888">2★</text>'
+    svg += f'<rect x="{margin_l + 265}" y="{margin_t + plot_h + 20}" width="10" height="6" fill="#e6c619" />'
+    svg += f'<text x="{margin_l + 278}" y="{margin_t + plot_h + 26}" font-size="8" fill="#888">1★</text>'
 
     # Title
     wind_summary = plan.get("wind", {}).get("summary", "")

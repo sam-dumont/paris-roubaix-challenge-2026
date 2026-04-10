@@ -1,142 +1,177 @@
 {
   "start_time": "08:00",
-  "finish_time": "14:41",
-  "total_hours": 6.7,
-  "avg_power_w": 148,
-  "avg_speed_kmh": 21.9,
-  "intensity_factor": 0.52,
+  "finish_time": "14:08",
+  "total_hours": 6.1,
+  "avg_power_w": 167,
+  "avg_speed_kmh": 23.9,
+  "intensity_factor": 0.58,
   "timeline": [
     {
       "time": "08:00",
       "km": 0.0,
       "event": "START \u2014 Roubaix",
-      "note": "Eat breakfast 2-3h before. Last gel 15min before start.",
+      "note": "Target: 167W avg (IF 0.58). Conserve to km 51.",
       "nutrition": "2x Beta Fuel bidons (160g carbs). Pre-start gel: +40g."
     },
     {
-      "time": "09:32",
+      "time": "09:28",
       "km": 32.0,
       "event": "RAVITO \u2014 Sam\u00e9on",
       "note": "~10min stop",
-      "nutrition": "Refill 2x 900ml Beta Fuel bidons (160g). Eat CLIF + station food."
+      "nutrition": "Refill 2x Beta Fuel bidons (160g). Eat CLIF + station food."
     },
     {
-      "time": "10:31",
+      "time": "10:18",
       "km": 51.3,
       "event": "S19 \u2605\u2605\u2605\u2605\u2605 Trou\u00e9e d'Arenberg",
-      "note": "2.3km @ ~23km/h \ud83c\udf2c3km/h tail",
-      "nutrition": "GEL (Beta Fuel, 40g) \u2014 fuel up before 5\u2605"
+      "note": "2.3km @ 30km/h \u00b7 \u26a1250W \u00b7 15min",
+      "nutrition": "GEL pre-ARNBG"
     },
     {
-      "time": "10:45",
+      "time": "10:30",
       "km": 57.5,
       "event": "S18 \u2605\u2605\u2605 Wallers \u00e0 H\u00e9lesmes",
-      "note": "1.4km @ ~19km/h \ud83c\udf2c2km/h tail",
+      "note": "1.4km @ 27km/h \u00b7 \u26a1220W \u00b7 23min",
       "nutrition": ""
     },
     {
-      "time": "11:40",
+      "time": "10:46",
+      "km": 64.1,
+      "event": "S17 \u2605\u2605\u2605\u2605 Hornaing \u00e0 Wandignies",
+      "note": "3.7km @ 28km/h \u00b7 \u26a1244W \u00b7 30min",
+      "nutrition": ""
+    },
+    {
+      "time": "11:02",
+      "km": 71.6,
+      "event": "S16 \u2605\u2605\u2605 Warlaing \u00e0 Brillon",
+      "note": "2.4km @ 29km/h \u00b7 \u26a1245W \u00b7 21min",
+      "nutrition": ""
+    },
+    {
+      "time": "11:09",
+      "km": 75.0,
+      "event": "S15 \u2605\u2605\u2605\u2605 Tilloy \u00e0 Sars-et-Rosi\u00e8res",
+      "note": "2.4km @ 28km/h \u00b7 \u26a1226W \u00b7 37min",
+      "nutrition": ""
+    },
+    {
+      "time": "11:21",
       "km": 80.7,
       "event": "RAVITO \u2014 Beuvry-la-For\u00eat",
       "note": "~10min stop",
-      "nutrition": "Refill 2x 900ml Beta Fuel bidons (160g). Eat CLIF + station food."
+      "nutrition": "Refill 2x Beta Fuel bidons (160g). Eat CLIF + station food."
     },
     {
-      "time": "11:43",
+      "time": "11:24",
       "km": 81.9,
       "event": "S14 \u2605\u2605\u2605 Beuvry-la-For\u00eat \u00e0 Orchies",
-      "note": "1.4km @ ~22km/h \ud83c\udf2c3km/h head",
+      "note": "1.4km @ 27km/h \u00b7 \u26a1206W \u00b7 15min",
       "nutrition": ""
     },
     {
-      "time": "11:56",
+      "time": "11:37",
       "km": 86.8,
       "event": "S13 \u2605\u2605\u2605 Orchies",
-      "note": "1.8km @ ~25km/h \ud83c\udf2c1km/h tail",
+      "note": "1.8km @ 25km/h \u00b7 \u26a1133W \u00b7 5min",
       "nutrition": ""
     },
     {
-      "time": "12:12",
+      "time": "11:54",
       "km": 92.9,
       "event": "S12 \u2605\u2605\u2605\u2605 Auchy-lez-Orchies \u00e0 Bers\u00e9e",
-      "note": "2.5km @ ~22km/h \ud83c\udf2c2km/h head",
+      "note": "2.5km @ 22km/h \u00b7 \u26a1184W \u00b7 13min",
       "nutrition": ""
     },
     {
-      "time": "12:28",
+      "time": "12:08",
       "km": 98.3,
       "event": "S11 \u2605\u2605\u2605\u2605\u2605 Mons-en-P\u00e9v\u00e8le",
-      "note": "3.0km @ ~25km/h \ud83c\udf2c1km/h tail",
-      "nutrition": "GEL (Beta Fuel, 40g) \u2014 fuel up before 5\u2605"
+      "note": "3.0km @ 18km/h \u00b7 \u26a1156W \u00b7 13min",
+      "nutrition": "GEL pre-MONS"
     },
     {
-      "time": "12:45",
+      "time": "12:25",
       "km": 104.4,
       "event": "S10 \u2605\u2605 M\u00e9rignies \u00e0 Avelin",
-      "note": "0.6km @ ~23km/h \ud83c\udf2c3km/h tail",
+      "note": "0.6km @ 26km/h \u00b7 \u26a1130W \u00b7 4min",
       "nutrition": ""
     },
     {
-      "time": "12:55",
+      "time": "12:33",
       "km": 107.7,
       "event": "S9 \u2605\u2605\u2605 Pont-Thibault \u00e0 Ennevelin",
-      "note": "1.4km @ ~26km/h \ud83c\udf2c6km/h tail",
+      "note": "1.4km @ 28km/h \u00b7 \u26a1180W \u00b7 13min",
+      "nutrition": ""
+    },
+    {
+      "time": "12:47",
+      "km": 113.5,
+      "event": "RAVITO \u2014 Templeuve",
+      "note": "~10min stop",
+      "nutrition": "Refill 2x Beta Fuel bidons (160g). Eat CLIF + station food."
+    },
+    {
+      "time": "12:48",
+      "km": 113.8,
+      "event": "S8 \u2605\u2605 Templeuve (Moulin de Vertain)",
+      "note": "0.5km @ 26km/h \u00b7 \u26a1109W \u00b7 3min",
+      "nutrition": ""
+    },
+    {
+      "time": "13:04",
+      "km": 120.2,
+      "event": "S7 \u2605\u2605\u2605 Cysoing \u00e0 Bourghelles",
+      "note": "0.9km @ 22km/h \u00b7 \u26a1157W \u00b7 11min",
       "nutrition": ""
     },
     {
       "time": "13:07",
-      "km": 113.5,
-      "event": "RAVITO \u2014 Templeuve",
-      "note": "~10min stop",
-      "nutrition": "Refill 2x 900ml Beta Fuel bidons (160g). Eat CLIF + station food."
-    },
-    {
-      "time": "13:26",
-      "km": 120.2,
-      "event": "S7 \u2605\u2605\u2605 Cysoing \u00e0 Bourghelles",
-      "note": "0.9km @ ~19km/h \ud83c\udf2c6km/h tail",
-      "nutrition": ""
-    },
-    {
-      "time": "13:32",
       "km": 121.5,
       "event": "S6 \u2605\u2605\u2605 Bourghelles \u00e0 Wannehain",
-      "note": "0.8km @ ~26km/h \ud83c\udf2c4km/h tail",
+      "note": "0.8km @ 24km/h \u00b7 \u26a1148W \u00b7 5min",
       "nutrition": ""
     },
     {
-      "time": "13:44",
+      "time": "13:18",
       "km": 125.6,
       "event": "S5 \u2605\u2605\u2605\u2605 Camphin-en-P\u00e9v\u00e8le",
-      "note": "1.8km @ ~25km/h \ud83c\udf2c1km/h head",
-      "nutrition": ""
+      "note": "1.8km @ 25km/h \u00b7 \u26a1213W \u00b7 7min",
+      "nutrition": "GEL pre-FINALE"
     },
     {
-      "time": "13:50",
+      "time": "13:24",
       "km": 128.3,
       "event": "S4 \u2605\u2605\u2605\u2605\u2605 Carrefour de l'Arbre",
-      "note": "2.0km @ ~10km/h \ud83c\udf2c4km/h head",
-      "nutrition": "GEL (Beta Fuel, 40g) \u2014 fuel up before 5\u2605"
+      "note": "2.0km @ 23km/h \u00b7 \u26a1247W \u00b7 8min",
+      "nutrition": ""
     },
     {
-      "time": "13:55",
+      "time": "13:30",
       "km": 130.5,
       "event": "S3 \u2605\u2605 Gruson",
-      "note": "1.1km @ ~25km/h \ud83c\udf2c4km/h tail",
+      "note": "1.1km @ 25km/h \u00b7 \u26a1190W \u00b7 13min",
       "nutrition": ""
     },
     {
-      "time": "14:21",
+      "time": "13:49",
       "km": 138.3,
       "event": "S2 \u2605\u2605 Willems \u00e0 Hem",
-      "note": "1.4km @ ~27km/h \ud83c\udf2c2km/h tail",
+      "note": "1.4km @ 26km/h \u00b7 \u26a1187W \u00b7 7min",
       "nutrition": ""
     },
     {
-      "time": "14:41",
+      "time": "14:07",
+      "km": 146.2,
+      "event": "S1 \u2605 Pav\u00e9 Roubaix",
+      "note": "0.0km @ 29km/h \u00b7 \u26a1130W \u00b7 2min",
+      "nutrition": ""
+    },
+    {
+      "time": "14:08",
       "km": 146.7,
       "event": "FINISH \u2014 Roubaix V\u00e9lodrome",
-      "note": "",
+      "note": "Total: 6h08m \u00b7 \u26a1167W avg \u00b7 23.9 km/h",
       "nutrition": ""
     }
   ],
@@ -155,7 +190,7 @@
     "temp_start": 13,
     "temp_peak": 17,
     "rain_pct": 0,
-    "summary": "SSW 18-25km/h shifting W. Dry. 13\u219217\u219210\u00b0C."
+    "summary": "SSW 20km/h shifting W. Dry. 13\u219210\u00b0C."
   },
   "wind_segments": [],
   "elevation": "+671m"

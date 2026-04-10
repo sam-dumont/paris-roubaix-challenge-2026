@@ -302,7 +302,7 @@ def main():
         bike_mass_kg=14,
         cda=0.53,           # casual position, gravel bike
         crr=0.007,           # calibrated from real rides (gravel tires on road)
-        goal_effort=0.65,
+        goal_effort=0.50,
         w_prime=pdc.w_prime if pdc else 14107,
         power_curve=pdc,
         draft="solo",        # sportive, not drafting

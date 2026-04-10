@@ -1,9 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="refresh" content="0; url=prc26_course_map.html">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PRC26 Race Plan</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 20px; max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 1.8em; margin-bottom: 4px; color: #fff; }
+  h2 { font-size: 1.2em; margin: 24px 0 12px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; font-weight: 400; }
+  .subtitle { color: #888; margin-bottom: 20px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .card { background: #1a1a1a; border-radius: 8px; padding: 16px; }
+  .card .label { font-size: 0.75em; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+  .card .value { font-size: 1.6em; font-weight: 700; color: #fff; margin-top: 4px; }
+  .card .unit { font-size: 0.7em; color: #666; font-weight: 400; }
+  .card.accent { border-left: 3px solid #f59e0b; }
+  .card.green { border-left: 3px solid #22c55e; }
+  .card.blue { border-left: 3px solid #3b82f6; }
+  .card.red { border-left: 3px solid #ef4444; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  th { text-align: left; padding: 8px 12px; border-bottom: 1px solid #333; color: #888; font-size: 0.8em; text-transform: uppercase; font-weight: 400; }
+  td { padding: 8px 12px; border-bottom: 1px solid #1a1a1a; font-size: 0.9em; }
+  tr:hover { background: #1a1a1a; }
+  .stars { color: #f59e0b; }
+  .sector-5 td { background: rgba(239,68,68,0.08); }
+  .sector-4 td { background: rgba(245,158,11,0.05); }
+  .time { font-variant-numeric: tabular-nums; }
+  .pacing { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  .zone { background: #1a1a1a; border-radius: 8px; padding: 14px; text-align: center; }
+  .zone .km { font-size: 0.8em; color: #888; }
+  .zone .power { font-size: 1.3em; font-weight: 700; margin: 4px 0; }
+  .zone .desc { font-size: 0.75em; color: #666; }
+  .zone-easy .power { color: #22c55e; }
+  .zone-steady .power { color: #f59e0b; }
+  .zone-push .power { color: #ef4444; }
+  a { color: #3b82f6; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .weather { display: flex; gap: 16px; flex-wrap: wrap; }
+  .weather-item { font-size: 0.9em; }
+  .weather-item span { color: #888; }
+  .map-link { display: inline-block; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 12px 24px; margin-top: 12px; font-size: 0.9em; }
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #1a1a1a; font-size: 0.75em; color: #555; }
+</style>
 </head>
 <body>
-<a href="prc26_course_map.html">PRC26 Course Map</a>
+
+<h1>Paris-Roubaix Challenge 2026</h1>
+<p class="subtitle">April 11 &mdash; 146.7 km &mdash; 19 cobble sectors</p>
+
+<h2>Race Summary</h2>
+<div class="cards">
+  <div class="card accent">
+    <div class="label">Est. Time</div>
+    <div class="value">6<span class="unit">h</span>41<span class="unit">m</span></div>
+  </div>
+  <div class="card green">
+    <div class="label">Avg Speed</div>
+    <div class="value">21.9 <span class="unit">km/h</span></div>
+  </div>
+  <div class="card blue">
+    <div class="label">Avg Power</div>
+    <div class="value">148 <span class="unit">W</span></div>
+  </div>
+  <div class="card">
+    <div class="label">IF / TSS</div>
+    <div class="value">0.52 <span class="unit">/ 182</span></div>
+  </div>
+</div>
+
+<h2>Pacing Zones</h2>
+<div class="pacing">
+  <div class="zone zone-easy">
+    <div class="km">km 0 &rarr; 51</div>
+    <div class="power">130W</div>
+    <div class="desc">Conserve before cobbles<br>88% target</div>
+  </div>
+  <div class="zone zone-steady">
+    <div class="km">km 51 &rarr; 131</div>
+    <div class="power">148W</div>
+    <div class="desc">Cobble gauntlet<br>Match terrain</div>
+  </div>
+  <div class="zone zone-push">
+    <div class="km">km 131 &rarr; 147</div>
+    <div class="power">155W</div>
+    <div class="desc">Finale to Roubaix<br>105% target</div>
+  </div>
+</div>
+
+<h2>Weather</h2>
+<div class="weather">
+  <div class="weather-item"><span>Wind</span> 20 km/h SSW (214&deg;)</div>
+  <div class="weather-item"><span>Temp</span> 14&deg;C</div>
+  <div class="weather-item"><span>Humidity</span> 70%</div>
+  <div class="weather-item"><span>Rain</span> Dry</div>
+  <div class="weather-item"><span>Note</span> Wind shifts W through the day. Finale sectors face 25 km/h westerly.</div>
+</div>
+
+<h2>Sector Plan</h2>
+<table>
+<thead>
+  <tr><th>Sector</th><th>Name</th><th>Km</th><th>Speed</th><th>Time</th><th>ETA</th></tr>
+</thead>
+<tbody>
+  <tr><td colspan="6" style="color:#888; font-size:0.8em;">km 0-51: road to cobbles @ 130W avg</td></tr>
+  <tr><td></td><td style="color:#22c55e">RAVITO Sameon</td><td>32</td><td></td><td></td><td class="time">09:32</td></tr>
+  <tr class="sector-5"><td class="stars">19 *****</td><td>Arenberg</td><td>51</td><td>22.8</td><td>6m</td><td class="time">10:29</td></tr>
+  <tr><td>18 ***</td><td>Wallers-Helesmes</td><td>57</td><td>12.8</td><td>7m</td><td class="time">10:44</td></tr>
+  <tr class="sector-4"><td>17 ****</td><td>Hornaing-Wandignies</td><td>64</td><td>17.8</td><td>13m</td><td class="time">10:57</td></tr>
+  <tr><td>16 ***</td><td>Warlaing-Brillon</td><td>72</td><td>21.2</td><td>7m</td><td class="time">11:17</td></tr>
+  <tr class="sector-4"><td>15 ****</td><td>Tilloy-Sars</td><td>75</td><td>10.4</td><td>14m</td><td class="time">11:23</td></tr>
+  <tr><td></td><td style="color:#22c55e">RAVITO Beuvry</td><td>81</td><td></td><td></td><td class="time">11:37</td></tr>
+  <tr><td>14 ***</td><td>Beuvry-Orchies</td><td>82</td><td>11.0</td><td>8m</td><td class="time">11:40</td></tr>
+  <tr><td>13 ***</td><td>Orchies</td><td>87</td><td>19.7</td><td>6m</td><td class="time">11:56</td></tr>
+  <tr class="sector-4"><td>12 ****</td><td>Auchy-Bersee</td><td>93</td><td>15.8</td><td>10m</td><td class="time">12:12</td></tr>
+  <tr class="sector-5"><td class="stars">11 *****</td><td>Mons-en-Pevele</td><td>98</td><td>18.1</td><td>10m</td><td class="time">12:28</td></tr>
+  <tr><td>10 **</td><td>Merignies-Avelin</td><td>104</td><td>9.9</td><td>4m</td><td class="time">12:44</td></tr>
+  <tr><td>9 ***</td><td>Pont-Thibault</td><td>108</td><td>15.3</td><td>6m</td><td class="time">12:51</td></tr>
+  <tr><td></td><td style="color:#22c55e">RAVITO Templeuve</td><td>114</td><td></td><td></td><td class="time">13:07</td></tr>
+  <tr><td>8 **</td><td>Templeuve</td><td>114</td><td>11.6</td><td>3m</td><td class="time">13:07</td></tr>
+  <tr><td>7 ***</td><td>Cysoing-Bourghelles</td><td>120</td><td>7.7</td><td></td><td class="time">13:26</td></tr>
+  <tr><td>6 ***</td><td>Bourghelles-Wannehain</td><td>122</td><td>11.5</td><td>4m</td><td class="time">13:28</td></tr>
+  <tr class="sector-4"><td>5 ****</td><td>Camphin-en-Pevele</td><td>126</td><td>12.8</td><td>8m</td><td class="time">13:40</td></tr>
+  <tr class="sector-5"><td class="stars">4 *****</td><td>Carrefour de l'Arbre</td><td>128</td><td>18.4</td><td>7m</td><td class="time">13:48</td></tr>
+  <tr><td>3 **</td><td>Gruson</td><td>131</td><td>14.8</td><td>5m</td><td class="time">13:55</td></tr>
+  <tr><td colspan="6" style="color:#888; font-size:0.8em;">km 131-147: finale @ 155W</td></tr>
+  <tr><td>2 **</td><td>Willems-Hem</td><td>138</td><td>15.5</td><td>5m</td><td class="time">14:17</td></tr>
+  <tr><td>1 *</td><td>Roubaix</td><td>146</td><td></td><td></td><td class="time">14:38</td></tr>
+  <tr style="font-weight:700"><td></td><td>FINISH</td><td>147</td><td></td><td></td><td class="time">14:41</td></tr>
+</tbody>
+</table>
+
+<h2>Nutrition</h2>
+<div class="cards">
+  <div class="card"><div class="label">Gels</div><div class="value">4</div></div>
+  <div class="card"><div class="label">Bars</div><div class="value">3</div></div>
+  <div class="card"><div class="label">Carbs/hr</div><div class="value">110<span class="unit">g</span></div></div>
+  <div class="card"><div class="label">Fluid</div><div class="value">5.3<span class="unit">L</span></div></div>
+</div>
+
+<h2>Links</h2>
+<a href="prc26_course_map.html" class="map-link">Course Map with Sectors</a>
+
+<div class="footer">
+  Generated by bike-power-model &mdash; physics-based plan_ride() with 20 km/h SSW wind forecast.
+  FTP=287W, CdA=0.53, Crr=0.007, mass=114kg. Model validated on 112 rides (7.9% MAE).
+</div>
+
 </body>
 </html>
